@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAKE WATER GUN</title>
+    <style>
+      body{
+        background-image: url('gun.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 150%;
+        font-weight: bold;
+        font-size: 50px;
+        justify-content: center;
+        color : red ;
+      }
+      .head{
+        margin-left: 30vw;
+      }
+      .rule{
+        font-size : 20px;
+        max-width: max-content;
+        margin-left: 34vw;
+        margin-top: 3vw;
+      }
+      .tex{
+        color : aqua;
+      }
+      .sn{
+        color : greenyellow;
+        font-style: italic;
+        font-size: 32px;
+      }
+      .gu{
+        color : rgb(236, 112, 112);
+        font-style: italic;
+        font-size: 32px;
+      }
+      .wa{
+        color : rgb(161, 166, 236);
+        font-style: italic;
+        font-size: 32px;
+      }
+      .subm{
+        max-width: max-content;
+        margin-left : 35vw;
+      }
+      #inp{
+        font-size: 33px;
+        color : green;
+        background-color: aqua;
+        border-radius: 20%;
+      }
+      #btn{
+        font-size : 30px;
+        color : blue;
+        font-style: italic;
+        font-weight: bold;
+        border-radius: 35%;
+        background-color:yellowgreen;
+      }
+      #res{
+        margin-left :35vw;
+        font-size: 45px;
+        color : rgb(175, 230, 73);
+        font-style: oblique; 
+      }
+      #reset{
+        margin-left:25.9vw;
+        position: relative;
+        top : 4.2vw;
+        font-size : 30px;
+        color : blue;
+        font-style: italic;
+        font-weight: bold;
+        border-radius: 35%;
+        background-color:yellowgreen;
+      }
+    </style>
+</head>
+<body>
+  <div class="head">LET'S PLAY THE GAME</div>
+    <div class="rule">
+      <div class="tex">Enter <span class="sn">s</span> for ----- <span class="sn">SNAKE</span></div>
+      <div class="tex">Enter <span class="gu">g</span> for ----- <span class="gu">GUN</span></div>
+      <div class="tex">Enter <span class="wa">w</span> for ----- <span class="wa">WATER</span></div>
+    </div>
+  <br>
+  <button id="reset" onclick="reset()">RESET</button>
+  <div class="subm">
+  <input id="inp" type="text">
+  <button onclick="play()" id="btn">PLAY</button></div>
+  <br>
+  <div id="res"></div>
+    <script>
+       function play()
+       {
+      //  const sound = new Audio('backsound.mp3');
+      //  sound.play();
+       let user = document.getElementById("inp").value;
+        let cpuu = Math.floor(Math.random() * 3);
+        let cpu = ["s","w","g"][cpuu];
+
+        const match = (user,cpu) =>{
+            if(user == cpu)
+             return "--OoPs!!match is tied,,,No winner";
+            else if(user == "s" && cpu == "w")
+             return "user";
+            else if(user == "s" && cpu == "g")
+             return "cpu";
+            else if(user == "w" && cpu == "s")
+             return "cpu";
+            else if(user == "w" && cpu == "g")
+             return "user";
+            else if(user == "g" && cpu == "s")
+             return "user";
+            else if(user == "g" && cpu == "w")
+             return "cpu";
+            else
+             return "OOPS!!!!Reset the game";
+        }
+        let result = match(user,cpu);
+        document.getElementById("res").innerHTML= `cpu : ${cpu}   AND   user : ${user} <br> Winner is ${result.toUpperCase()}`;
+      }
+      function reset()
+      {
+        document.getElementById("inp").value="";
+        document.getElementById("res").innerHTML="";
+      }
+    </script>
+</body>
+</html>
